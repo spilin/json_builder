@@ -166,6 +166,36 @@ You will get something like:
 }
 ```
 
+### Rendering Partials
+
+Rendering partials is just as easy as defining your schema. Just pass in any object that responds to `to_partial_path` (such as ActiveRecord models), or a direct path to a partial to render it.
+
+```ruby
+count @users.count
+partial @users, :as => :users
+```
+
+With your partial living at `app/views/users/_user.json_builder`
+
+```ruby
+name user.name
+awesome user.awesome?
+```
+
+The JSON response would be:
+
+```json
+{
+  "count": 1,
+  "users": [
+    {
+      "name": "Garrett Bjerkhoel",
+      "awesome": true
+    }
+  ]
+}
+```
+
 ### Including JSONP callbacks
 
 Out of the box JSON Builder supports JSONP callbacks when used within a Rails project just by using the `callback` parameter. For instance, if you requested `/users.json?callback=myjscallback`, you'll get a callback wrapping the response:
