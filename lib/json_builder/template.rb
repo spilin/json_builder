@@ -31,7 +31,7 @@ if defined?(Rails) && Rails.version =~ /^2/
 end
 
 # Rails 3.X Template
-if defined?(Rails) && Rails.version =~ /^3/
+if defined?(Rails) && Rails::VERSION::MAJOR >= 3
   module ActionView
     module Template::Handlers
       class JSONBuilder
